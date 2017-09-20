@@ -1,6 +1,6 @@
 const fs = require('fs')
 const path = require('path');
-const { BannerPlugin } = require('webpack')
+const webpack = require('webpack')
 
 const metadata = fs.readFileSync('./metadata.txt').toString()
 
@@ -20,7 +20,17 @@ module.exports = {
     ]
   },
   plugins: [
-    new BannerPlugin({
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false,
+        comparisons: false
+      },
+      output: {
+        comments: false
+      },
+      sourceMap: false
+    }),
+    new webpack.BannerPlugin({
       banner: metadata,
       entryOnly: true,
       raw: true
