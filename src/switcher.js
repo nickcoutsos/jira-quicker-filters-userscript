@@ -133,7 +133,11 @@ class Switcher extends React.Component {
           placeholder="Search..."
           onChange={this.handleSearchChange}
           onKeyDown={this.handleKeyDown}
-          ref={input => input && input.focus()}
+          ref={input => {
+            // sometimes the input loses focus immediately afterwards
+            // (possibly due to another element having focus?)
+            input && setTimeout(() => input.focus())
+          }}
           value={search}
         />
 
