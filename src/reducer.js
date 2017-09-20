@@ -14,7 +14,10 @@ export default (state={}, { type, payload }) => {
       const current = new URL(location.href)
 
       current.searchParams.delete('quickFilter')
-      current.searchParams.append('quickFilter', payload)
+      if (payload.length > 0) {
+        current.searchParams.append('quickFilter', payload)
+      }
+
       window.history.pushState({}, null, current.href)
       window.history.back()
       setTimeout(() => window.history.forward(), 100)
