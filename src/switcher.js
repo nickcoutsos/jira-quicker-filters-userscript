@@ -46,10 +46,12 @@ const renderLabel = (label, search) => {
 
 class Switcher extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
+    const { activeFilter, filters } = props
+
     this.state = {
       search: '',
-      pending: props.filters[0].id,
+      pending: activeFilter || filters[0] && filters[0].id,
       filterResults: props.filters
     }
 
