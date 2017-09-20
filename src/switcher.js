@@ -22,6 +22,11 @@ const activeStyle = {
   borderRadius: '3px'
 }
 
+const filterListStyle = {
+  maxHeight: '300px',
+  overflow: 'scroll'
+}
+
 const renderLabel = (label, search) => {
   if (!search) {
     return label
@@ -51,11 +56,6 @@ class Switcher extends React.Component {
     this.handleSearchChange = this.handleSearchChange.bind(this)
     this.handleKeyDown = this.handleKeyDown.bind(this)
   }
-
-  // componentDidMount() {
-  //   const { search } = this.state
-  //   this.handleSearchChange(search)
-  // }
 
   handleSearchChange ({ target }) {
     const search = target.value
@@ -90,7 +90,14 @@ class Switcher extends React.Component {
     const actualNext = next < 0 ? next + filterResults.length : next
     const nextPending = filterResults[actualNext]
     
-    this.setState({ pending: nextPending && nextPending.id })
+    this.setState({ pending: nextPending && nextPending.id }, () => {
+      if (!this.list) {
+        return
+      }
+
+      const pending = this.list.querySelector('.pending')
+      pending.scrollIntoViewIfNeeded(false)
+    })
   }
 
   handleSelection (selection) {
@@ -129,11 +136,16 @@ class Switcher extends React.Component {
         />
 
         {
-          filters.length > 0
-            ? (
-              <dl className="ghx-controls-filters">
+          visibleFilters.length === 0
+            ? <p><em>No matching filters</em></p>
+            : (
+              <dl
+                ref={list => this.list = list}
+                style={filterListStyle}
+                className="ghx-controls-filters"
+              >
                 {visibleFilters.map(({ id, label }) => (
-                  <dd key={`filter-${id}`}>
+                  <dd className={id === pending && 'pending' || ''} key={`filter-${id}`}>
                     <a
                       onClick={() => this.handleSelection(id)}
                       style={Object.assign(
@@ -147,11 +159,6 @@ class Switcher extends React.Component {
                   </dd>
                 ))}
               </dl>
-            )
-            : (
-              <p>
-                <em>No matching filters</em>
-              </p>
             )
         }
       </div>
