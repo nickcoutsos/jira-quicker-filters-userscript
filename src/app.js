@@ -37,7 +37,7 @@ class App extends React.Component {
     
     document.body.addEventListener('keypress', this.handleKeyPress)
 
-    watch('#gh', 200, gh => {
+    watch('#js-work-quickfilters dd', 200, gh => {
       const filters = getFilters()
       dispatch({ type: 'UPDATE_FILTERS', payload: filters })
     })
