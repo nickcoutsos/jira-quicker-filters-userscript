@@ -45,8 +45,12 @@ class App extends React.Component {
 
   handleKeyPress (event) {
     const { dispatch, isDialogOpen } = this.props
+    const { target, key } = event
+    const isNormalTyping = (
+      ['SELECT', 'TEXTAREA', 'INPUT'].indexOf(target.nodeName) !== -1
+    )
 
-    if (isDialogOpen || event.key !== 'f') {
+    if (isNormalTyping || isDialogOpen || event.key !== 'f') {
       return
     }
 
