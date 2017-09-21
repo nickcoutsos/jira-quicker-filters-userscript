@@ -10,7 +10,7 @@ branches:
   - production
 before_install:
 - npm install -g npm@latest
-before_deploy:
+script:
 - npm run build
 deploy:
   provider: releases
