@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path');
 const webpack = require('webpack')
 
-const metadata = fs.readFileSync('./metadata.txt').toString()
+const metadata = fs.readFileSync('./metadata.js').toString()
 
 module.exports = {
   entry: path.resolve('./src/main.js'),

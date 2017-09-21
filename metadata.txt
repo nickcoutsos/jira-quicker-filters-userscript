@@ -1,7 +1,0 @@
-// ==UserScript==
-// @name Jira Quicker Filters
-// @description Quick switching of Jira Agile Quick Filters
-// @namespace https://github.com/nickcoutsos
-// @match https://*.atlassian.net/secure/RapidBoard.jspa*
-// @grant none
-// ==/UserScript==
