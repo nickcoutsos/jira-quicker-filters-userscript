@@ -28,3 +28,14 @@ to clear it.
 ## Choppy gif action
 
 ![Demonstration](demo.gif)
+
+## Installation
+
+1. Install a userscript manager browser extension
+    * _(See [OpenUserJS: Userscript Beginners HOWTO])_
+2. Install the userscript: [jira-quicker-filters.user.js]
+    * Your userscript manager should detect the `.user.js` extension and
+      automatically prompt you to complete the installation
+
+[OpenUserJS: Userscript Beginners HOWTO]: https://openuserjs.org/about/Userscript-Beginners-HOWTO
+[jira-quicker-filters.user.js]: https://github.com/nickcoutsos/jira-quicker-filters-userscript/raw/gh-pages/jira-quicker-filters.user.js
